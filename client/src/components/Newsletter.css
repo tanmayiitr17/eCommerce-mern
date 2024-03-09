@@ -1,0 +1,52 @@
+.newsletter__container {
+  height: 60vh;
+  background-color: #fcf5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.newsletter__title {
+  font-size: 70px;
+}
+
+.newsletter__desc {
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.newsletter__input-container {
+  width: 50%;
+  height: 40px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid lightgray;
+}
+
+.newsletter__input {
+  border: none;
+  flex: 8;
+  padding-left: 20px;
+}
+
+.newsletter__button {
+  flex: 1;
+  border: none;
+  background-color: teal;
+  color: white;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 380px) {
+  .newsletter__desc {
+    text-align: center;
+  }
+
+  .newsletter__input-container {
+    width: 80%;
+  }
+}
