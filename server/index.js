@@ -21,7 +21,13 @@ mongoose
     console.log(err);
   });
 
-app.use(cors());
+app.use(cors(
+  {
+     origin:["https://ecommerce-mern-client-17.vercel.app/","https://ecommerce-mern-admin.vercel.app/"],
+     methods:["POST","PUT","DELETE","GET"],
+     credentials:true,
+  }
+));
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
