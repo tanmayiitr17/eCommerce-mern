@@ -8,9 +8,6 @@ const cartSlice = createSlice({
     },
     reducers: {
         addProductSuccess: (state, action) => {
-            console.log("first")
-            console.log(action.payload)
-            // state.carts = [...state.carts, action.payload];
             state.carts.push(action.payload);
         },
         deleteProductSuccess: (state, action) => {

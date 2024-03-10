@@ -33,10 +33,7 @@ export const register = async (user, dispatch) => {
 
 export const addToCart = async (product, dispatch) => {
     try {
-        console.log("yess")
         const res = await userRequest.post('/carts', product);
-        console.log("nooo")
-        console.log(res.data)
         dispatch(addProductSuccess(res.data));
     } catch (err) {
     }
@@ -44,10 +41,7 @@ export const addToCart = async (product, dispatch) => {
 
 export const getUserCart = async (userId, dispatch) => {
     try {
-        console.log("get ke andr")
         const res = await userRequest.get(`/carts/find/${userId}`);
-        console.log("get backend se aya")
-        console.log(res.data)
         dispatch(addProductSuccess(res.data));
     } catch (err) {
     }

@@ -14,7 +14,7 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
-    navigate("/")
+    navigate("/");
   }
 
   const handleSwitchToRegister = () => {
@@ -40,7 +40,7 @@ const Login = () => {
           />
           <button className="login__button"
             onClick={handleClick}
-            disabled={isFetching}
+          // disabled={isFetching}
           >
             LOGIN
           </button>

@@ -13,8 +13,8 @@ import { getUserCart } from "../redux/apiCalls";
 const Navbar = () => {
   const [products, setProducts] = useState([]);
   const cart = useSelector((state) => state.cart?.carts)
-  const quantity = useSelector((state) => state.cart?.carts?.length);
-  console.log(quantity)
+  const quantity = useSelector((state) => state.cart?.carts[0]?.length);
+
   const dispatch = useDispatch();
   const userId = useSelector((state) => state?.user?.currentUser?._id);
   useEffect(() => {
@@ -27,7 +27,13 @@ const Navbar = () => {
 
   const handleLogout = (e) => {
     dispatch(logout());
-    navigate("/login")
+    navigate("/login");
+    window.location.reload();
+  }
+
+  const handleClick = (e) => {
+    navigate("/cart");
+    window.location.reload();
   }
 
   const user = useSelector((state) => state.user.currentUser?.username);
@@ -50,7 +56,11 @@ const Navbar = () => {
           <ExitToAppIcon className='nav__menu-item-logout' onClick={handleLogout} />
           <Link to='/cart'>
             <div className="nav__menu-item">
-              <Badge badgeContent={quantity} color="primary">
+              <Badge
+                badgeContent={quantity}
+                color="primary"
+                onClick={handleClick}
+              >
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </div>

@@ -36,15 +36,17 @@ const pdtPage = () => {
       setQuantity((quantity) => quantity + 1);
     }
   }
-  const title = pdt.title;
-  const img = pdt.img;
-  const price = pdt.price;
+
   const handleClick = () => {
+    const title = pdt.title;
+    const img = pdt.img;
+    const price = pdt.price;
+
     const product = { pdtId, quantity, color, size, title, img, price };
     const data = { userId, product };
-    console.log({ userId, product })
+
     addToCart(data, dispatch);
-    //window.location.reload();
+    window.location.reload();
   }
 
   return (
