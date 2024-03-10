@@ -1,5 +1,5 @@
 {
-    "version": 2, 
+    "version": 2,
     "builds": [
         {
             "src": "server.js",
@@ -11,5 +11,8 @@
             "src": "/(.*)",
             "dest": "server.js"
         }
-    ]
+    ],
+    "env": {
+        "PORT": "https://ecommerce-mern-gamma.vercel.app/"
+    }
 }
