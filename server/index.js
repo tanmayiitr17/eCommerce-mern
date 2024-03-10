@@ -23,9 +23,15 @@ mongoose
 
 app.use(cors(
   {
+<<<<<<< HEAD
     origin: ["http://localhost:5173/"],
     methods: ["GET", "PUT", "POST", "DELETE"],
     credentials: true,
+=======
+     origin:["https://ecommerce-mern-client-17.vercel.app/","https://ecommerce-mern-admin.vercel.app/","http://localhost:5173/"],
+     methods:["POST","PUT","DELETE","GET"],
+     credentials:true,
+>>>>>>> b2c000481d729eeba025d227bfa5957331b03992
   }
 ));
 
