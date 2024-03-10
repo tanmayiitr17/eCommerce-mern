@@ -24,7 +24,7 @@ mongoose
 app.use(cors(
   {
 <<<<<<< HEAD
-    origin: ["http://localhost:5173/"],
+    origin: ["http://localhost:5173/","https://ecommerce-mern-admin.vercel.app/","https://ecommerce-mern-client-17.vercel.app/"],
     methods: ["GET", "PUT", "POST", "DELETE"],
     credentials: true,
 =======
