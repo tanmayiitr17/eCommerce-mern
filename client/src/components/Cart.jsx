@@ -3,16 +3,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import "./Cart.css"
 import { removeFromCart } from "../redux/apiCalls";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-import { Route } from "react-router-dom";
 
 const Cart = ({ obj }) => {
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
-
-    const handleUpdate = () => {
-
-    }
 
     const handleRemove = async () => {
         try {
@@ -49,15 +42,14 @@ const Cart = ({ obj }) => {
             </div>
             <div className="cart__price-detail">
                 <div className="cart__product-amount-container">
-                    <AddIcon onClick={() => { handleQuantity("increase") }} />
+                    <AddIcon />
                     <div className="cart__product-amount">{obj.product.quantity}</div>
-                    <RemoveIcon onClick={() => { handleQuantity("decrease") }} />
+                    <RemoveIcon />
                 </div>
                 <div className="cart__product-price">
                     ₹{obj.product.price * obj.product.quantity}
                 </div>
                 <div>
-                    <div className="cart__product-remove" onClick={handleUpdate}>Update</div>
                     <div className="cart__product-remove" onClick={() => handleRemove()}>Remove</div>
                 </div>
             </div>
@@ -65,4 +57,4 @@ const Cart = ({ obj }) => {
     )
 }
 
-export default Cart
+export default Cart;

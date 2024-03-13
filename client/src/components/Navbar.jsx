@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
         <div className="nav__right ">
           <div className="nav__menu-item">{user}</div>
-          <div className="nav__logout" onClick={handleLogout} >Logout</div>
+          <div className="nav__logout" onClick={handleLogout} >LOGOUT</div>
           <div className="nav__menu-item">
             <Badge
               badgeContent={quantity}

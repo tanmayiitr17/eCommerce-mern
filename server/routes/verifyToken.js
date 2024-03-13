@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const verifyToken = (req, res, next) => {
   const token = req.headers.token || req.headers.Token; // Extract token from headers 
   if (!token) {
-    console.log("tokenNotfound")
     return res.status(401).json("You are not authenticated!"); // No token provided
   }
 
@@ -12,7 +11,6 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).json("Invalid Token!"); // Invalid token
     }
-
     req.user = user; // Attach user information to request object
     next(); // Move to next middleware or route handler
   });

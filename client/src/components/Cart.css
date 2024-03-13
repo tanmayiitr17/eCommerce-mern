@@ -36,6 +36,10 @@
     margin-top: 20px;
 }
 
+.cart__product-remove:hover {
+    color: red;
+}
+
 .cart__product-color {
     width: 20px;
     height: 20px;

@@ -37,7 +37,7 @@ const productPage = () => {
     }
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const title = pdt.title;
     const img = pdt.img;
     const price = pdt.price;
@@ -46,8 +46,12 @@ const productPage = () => {
     const product = { productId, quantity, color, size, title, img, price };
     const data = { userId, product };
 
-    addToCart(data, dispatch);
-    window.location.reload();
+    try {
+      await addToCart(data, dispatch);
+      window.location.reload();
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
