@@ -1,0 +1,15 @@
+
+.error-container{
+  height:20px;
+  font-size:10px;
+  font-weight:600;
+  display: flex;
+  align-items: center;
+  color:#e13434;
+  padding-top: 4px;
+}
+
+.error-icon{
+ font-size: 15px;
+ padding-right: 4px;
+}

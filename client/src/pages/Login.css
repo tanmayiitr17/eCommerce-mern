@@ -1,5 +1,5 @@
 .login__container {
-  width: 100;
+  width: 100%;
   height: 100vh;
   background: linear-gradient(rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)),
@@ -12,7 +12,7 @@
 
 .login__wrapper {
   padding: 20px;
-  width: 25%;
+  width: 20%;
   background-color: white;
 }
 
@@ -41,6 +41,7 @@
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  margin-top: 10px;
 
   &:disabled {
     color: green;
@@ -57,6 +58,11 @@
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+
+.login__form-conatiner {
+  min-width: 40%;
 }
 
 /* ----------------------------------------------------------------------------------- */

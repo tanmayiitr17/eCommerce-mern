@@ -1,83 +1,160 @@
-import React from "react";
 import './Register.css';
 import { useDispatch } from 'react-redux';
-import { useState } from "react";
 import { register } from "../redux/apiCalls";
 import { useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import ErrorText from "../components/ErrorText";
+
+const schema = yup.object({
+  username: yup.string().required("Unique username is required"),
+  fullName: yup.string().required("Full Name is required"),
+  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  email: yup.string().email("Invalid email format").required("Email is required"),
+  phone: yup
+    .number()
+    .typeError("Phone must be a number")
+    .min(1000000000, "Phone must be at least 10 digits")
+    .required("Phone number is required"),
+  address: yup.string().required("Email is required"),
+});
+
 
 const Register = () => {
 
   const dispatch = useDispatch();
-  const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
-  const handleChange = (e) => {
-    setInputs((prev) => {
-      return { ...prev, [e.target.name]: e.target.value }
-    })
-  }
+  // console.log(errors)
+  const onSubmit = async (data) => {
+    console.log("data");
+    console.log(data);
+    try {
+      const res = register(data, dispatch);
+      if (res.data) {
+        console.log("User Created!")
+      } else {
+        console.log("User not Created!")
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    navigate("/")
+  };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    const user = { ...inputs };
-    register(user, dispatch);
-    useNavigate("/");
-  }
+  // const onChange = (e) => {
+  //   onChange(e.target.value);
+  // }
 
   return (
     <div className="register__container">
       <div className="register__wrapper">
         <h1 className="register__title">CREATE AN ACCOUNT</h1>
-        <form action="" className="register__form">
-          <input
-            name="username"
-            type="text"
-            className="register__input"
-            placeholder="username"
-            onChange={handleChange}
-          />
-          <input
-            name="fullName"
-            type="text"
-            className="register__input"
-            placeholder="full name"
-            onChange={handleChange}
-          />
-          <input
-            name="email"
-            type="text"
-            className="register__input"
-            placeholder="xyz@gmail.com"
-            onChange={handleChange}
-          />
-          <input
-            name="password"
-            type="text"
-            className="register__input"
-            placeholder="password"
-            onChange={handleChange}
-          />
-          <input
-            name="phone"
-            type="number"
-            className="register__input"
-            placeholder="+91 XXXXXXXX78"
-            onChange={handleChange}
-          />
-          <input
-            name="address"
-            type="text"
-            className="register__input"
-            placeholder="XYZ | INDIA"
-            onChange={handleChange}
-          />
+        <form onSubmit={handleSubmit(onSubmit)} className="register__form">
+          <div>
+            <Controller
+              control={control}
+              name="username"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="text"
+                  className="register__input"
+                  placeholder="username"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.username?.message || ""} />
+          </div>
+          <div>
+            <Controller
+              control={control}
+              name="fullName"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="text"
+                  className="register__input"
+                  placeholder="full name"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.fullName?.message || ""} />
+          </div>
+          <div>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="text"
+                  className="register__input"
+                  placeholder="xyz@gmail.com"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.email?.message || ""} />
+          </div>
+          <div>
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="password"
+                  className="register__input"
+                  placeholder="password"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.password?.message || ""} />
+          </div>
+          <div>
+            <Controller
+              control={control}
+              name="phone"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="text"
+                  className="register__input"
+                  placeholder="+91 XXXXXXXX78"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.phone?.message || ""} />
+          </div>
+          <div>
+            <Controller
+              control={control}
+              name="address"
+              render={({ field: { onChange } }) => (
+                <input
+                  type="text"
+                  className="register__input"
+                  placeholder="XYZ | INDIA"
+                  onChange={(e) => onChange(e.target.value)}
+                />
+              )}
+            />
+            <ErrorText text={errors?.address?.message || ""} />
+          </div>
           <span className="register__aggrement">
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </span>
-          <button onClick={handleClick} className="register__button">CREATE</button>
+          <button type="submit" className="register__button">CREATE</button>
         </form>
       </div>
-    </div>
+    </div >
   );
 };
 

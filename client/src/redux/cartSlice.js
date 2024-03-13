@@ -10,11 +10,14 @@ const cartSlice = createSlice({
         addProductSuccess: (state, action) => {
             state.carts.push(action.payload);
         },
-        deleteProductSuccess: (state, action) => {
+        removeSuccess: (state, action) => {
+            state.carts.pop();
+        },
+        updateSuccess: (state, action) => {
             state.carts.pop();
         }
     }
 })
 
-export const { addProductSuccess, deleteProductSuccess } = cartSlice.actions;
+export const { addProductSuccess, removeSuccess, updateSuccess } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -7,15 +7,15 @@ import { publicRequest } from "../requestMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/apiCalls";
 
-const pdtPage = () => {
+const productPage = () => {
 
   const userId = useSelector((state) => state.user.currentUser._id);
   const location = useLocation();
   const pdtId = location.pathname.split("/")[2];
   const [pdt, setpdt] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [color, setColor] = useState("blue");
+  const [size, setSize] = useState("M");
 
   const dispatch = useDispatch();
 
@@ -41,8 +41,9 @@ const pdtPage = () => {
     const title = pdt.title;
     const img = pdt.img;
     const price = pdt.price;
+    const productId = pdtId;
 
-    const product = { pdtId, quantity, color, size, title, img, price };
+    const product = { productId, quantity, color, size, title, img, price };
     const data = { userId, product };
 
     addToCart(data, dispatch);
@@ -103,4 +104,4 @@ const pdtPage = () => {
   );
 };
 
-export default pdtPage;
+export default productPage;

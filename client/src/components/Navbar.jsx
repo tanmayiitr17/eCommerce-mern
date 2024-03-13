@@ -51,20 +51,18 @@ const Navbar = () => {
         <div className="nav__center">
           <h1 className="nav__logo">eKHARID.</h1>
         </div>
-        <div className="nav__right">
+        <div className="nav__right ">
           <div className="nav__menu-item">{user}</div>
-          <ExitToAppIcon className='nav__menu-item-logout' onClick={handleLogout} />
-          <Link to='/cart'>
-            <div className="nav__menu-item">
-              <Badge
-                badgeContent={quantity}
-                color="primary"
-                onClick={handleClick}
-              >
-                <ShoppingCartOutlinedIcon />
-              </Badge>
-            </div>
-          </Link>
+          <div className="nav__logout" onClick={handleLogout} >Logout</div>
+          <div className="nav__menu-item">
+            <Badge
+              badgeContent={quantity}
+              color="primary"
+              onClick={handleClick}
+            >
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          </div>
         </div>
       </div>
     </div>

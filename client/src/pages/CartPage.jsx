@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "./Cart.css";
-import Add from "@mui/icons-material/Add";
-import Remove from "@mui/icons-material/Remove";
+import "./CartPage.css";
 import { useSelector } from "react-redux";
 import StripeCheckout from 'react-stripe-checkout';
 import { userRequest } from '../requestMethods';
 import { useNavigate } from "react-router-dom";
-
+import Cart from '../components/Cart';
 
 const KEY = import.meta.env.REACT_APP_STRIPE;
 
-const Cart = () => {
-  const cart = useSelector((state) => state.cart?.carts[0])
+const CartPage = () => {
+
+  const cart = useSelector((state) => state.cart?.carts[0]);
+  const quantity = useSelector((state) => state.cart?.carts[0]?.length);
+
   const [stripeToken, setStripeToken] = useState(null);
+
   const navigate = useNavigate();
   const onToken = (token) => {
     setStripeToken(token);
@@ -43,11 +45,12 @@ const Cart = () => {
           <button
             className="cart__top-button"
             style={{ backgroundColor: "transparent" }}
+            onClick={() => navigate("/")}
           >
             CONTINUE SHOPPING
           </button>
           <div className="cart__top-texts">
-            <span className="cart__top-text">Shopping Bag(2)</span>
+            <span className="cart__top-text">Shopping Bag({quantity})</span>
             <span className="cart__top-text">Your Wishlist (0)</span>
           </div>
           <button
@@ -61,39 +64,7 @@ const Cart = () => {
           <div className="cart__info">
             {cart && cart?.map((obj) =>
             (
-              <div className="cart__product" key={obj._id}>
-                <div className="cart__product-detail">
-                  <img
-                    src={obj.product.img}
-                    className="cart__image"
-                  />
-                  <div className="cart__details">
-                    <span className="cart__product-name">
-                      <b>Product:</b> {obj.product.title}
-                    </span>
-                    <span className="cart__product-id">
-                      <b>ID:</b> {obj.product.productId}
-                    </span>
-                    <div
-                      className="cart__product-color"
-                      style={{ backgroundColor: `${obj.product.color}` }}
-                    ></div>
-                    <span className="cart__product-size">
-                      <b>Size : </b>{obj.product.size}
-                    </span>
-                  </div>
-                </div>
-                <div className="cart__price-detail">
-                  <div className="cart__product-amount-container">
-                    <Add />
-                    <div className="cart__product-amount">{obj.product.quantity}</div>
-                    <Remove />
-                  </div>
-                  <div className="cart__product-price">
-                    ₹{obj.product.price * obj.product.quantity}
-                  </div>
-                </div>
-              </div>
+              <Cart obj={obj} key={obj._id} />
             )
             )}
           </div>
@@ -147,4 +118,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

@@ -28,18 +28,11 @@
 }
 
 .nav__menu-item {
-    font-style: 14px;
+    padding: 12px 15px;
+    font-weight: 700;
     cursor: pointer;
-    margin-left: 25px;
-}
-
-.nav__menu-item-logout:hover {
-    color: red;
-}
-
-.nav__menu-item-logout {
-    margin-left: 1rem;
-    cursor: pointer;
+    letter-spacing: .4px;
+    color: #282c3f;
 }
 
 .nav__language {
@@ -63,6 +56,21 @@
     padding: 5px;
 }
 
+.nav__logout {
+    padding: 12px 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: .4px;
+    color: #282c3f;
+}
+
+.nav__logout:hover {
+    color: red
+}
+
+.nav__menu-item:hover {
+    color: teal;
+}
 
 /* ----------------------------------------------------------------------------------- */
 

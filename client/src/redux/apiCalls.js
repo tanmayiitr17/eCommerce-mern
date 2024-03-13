@@ -8,7 +8,7 @@ import {
     registerSuccess,
     registerFailure
 } from "./userSlice"
-import { addProductSuccess } from "./cartSlice";
+import { addProductSuccess, removeSuccess, updateSuccess } from "./cartSlice";
 
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
@@ -35,6 +35,28 @@ export const addToCart = async (product, dispatch) => {
     try {
         const res = await userRequest.post('/carts', product);
         dispatch(addProductSuccess(res.data));
+    } catch (err) {
+    }
+};
+
+export const removeFromCart = async (id, dispatch) => {
+    console.log("aaya")
+    try {
+        console.log("aur aaya")
+        const res = await userRequest.delete(`/carts/${id}`);
+        console.log("call hogya")
+        dispatch(removeSuccess(res.data));
+    } catch (err) {
+    }
+};
+
+export const updateCart = async (obj, dispatch) => {
+    console.log("aaya")
+    try {
+        console.log("aur aaya")
+        const res = await userRequest.put(`/carts/${obj._id}`, obj);
+        console.log(res)
+        dispatch(updateSuccess(res.data));
     } catch (err) {
     }
 };
