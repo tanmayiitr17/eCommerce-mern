@@ -63,7 +63,7 @@ const pdtPage = () => {
           <p className="productPage__desc">
             {pdt.desc}
           </p>
-          <span className="productPage__price">$ {pdt.price}</span>
+          <span className="productPage__price">₹ {pdt.price}</span>
           <div className="productPage__filter-container">
             <div className="productPage__filter">
               <span className="productPage__filter-title">Color</span>

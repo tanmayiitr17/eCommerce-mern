@@ -90,7 +90,7 @@ const Cart = () => {
                     <Remove />
                   </div>
                   <div className="cart__product-price">
-                    $ {obj.product.price * obj.product.quantity}
+                    ₹{obj.product.price * obj.product.quantity}
                   </div>
                 </div>
               </div>
@@ -102,17 +102,17 @@ const Cart = () => {
             <h1 className="cart__summary-title">ORDER SUMMARY</h1>
             <div className="cart__summary-item">
               <span className="cart__summary-item-text">Subtotal</span>
-              <span className="cart__summary-item-price">$ {cart?.total} </span>
+              <span className="cart__summary-item-price">₹ {cart?.total} </span>
             </div>
             <div className="cart__summary-item">
               <span className="cart__summary-item-text">
                 Estimated Shipping
               </span>
-              <span className="cart__summary-item-price">$ 5.90</span>
+              <span className="cart__summary-item-price">₹ 5.90</span>
             </div>
             <div className="cart__summary-item">
               <span className="cart__summary-item-text">Shipping Discount</span>
-              <span className="cart__summary-item-price">$ -5.90</span>
+              <span className="cart__summary-item-price">₹ -5.90</span>
             </div>
             <div className="cart__summary-item">
               <span
@@ -125,7 +125,7 @@ const Cart = () => {
                 className="cart__summary-item-price"
                 style={{ fontWeight: "500", fontSize: "24px" }}
               >
-                ${cart?.total}
+                ₹{cart?.total}
               </span>
             </div>
             <StripeCheckout
@@ -133,7 +133,7 @@ const Cart = () => {
               image="https://avatars.githubusercontent.com/u/1486366?v=4"
               billingAddress
               shippingAddress
-              description={`Your total is $`}
+              description={`Your total is ₹`}
               amount={cart?.total}
               token={onToken}
               stripekey={KEY}
