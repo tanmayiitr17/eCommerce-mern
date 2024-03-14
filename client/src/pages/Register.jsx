@@ -17,7 +17,7 @@ const schema = yup.object({
     .typeError("Phone must be a number")
     .min(1000000000, "Phone must be at least 10 digits")
     .required("Phone number is required"),
-  address: yup.string().required("Email is required"),
+  address: yup.string().required("Address is required"),
 });
 
 
@@ -48,16 +48,12 @@ const Register = () => {
     navigate("/")
   };
 
-  // const onChange = (e) => {
-  //   onChange(e.target.value);
-  // }
-
   return (
     <div className="register__container">
       <div className="register__wrapper">
         <h1 className="register__title">CREATE AN ACCOUNT</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="register__form">
-          <div>
+          <span>
             <Controller
               control={control}
               name="username"
@@ -71,8 +67,8 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.username?.message || ""} />
-          </div>
-          <div>
+          </span>
+          <span>
             <Controller
               control={control}
               name="fullName"
@@ -86,8 +82,8 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.fullName?.message || ""} />
-          </div>
-          <div>
+          </span>
+          <span>
             <Controller
               control={control}
               name="email"
@@ -101,8 +97,8 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.email?.message || ""} />
-          </div>
-          <div>
+          </span>
+          <span>
             <Controller
               control={control}
               name="password"
@@ -116,8 +112,8 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.password?.message || ""} />
-          </div>
-          <div>
+          </span>
+          <span>
             <Controller
               control={control}
               name="phone"
@@ -131,8 +127,8 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.phone?.message || ""} />
-          </div>
-          <div>
+          </span>
+          <span>
             <Controller
               control={control}
               name="address"
@@ -146,7 +142,7 @@ const Register = () => {
               )}
             />
             <ErrorText text={errors?.address?.message || ""} />
-          </div>
+          </span>
           <span className="register__aggrement">
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

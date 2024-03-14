@@ -22,17 +22,10 @@ mongoose
   });
 
 app.use(cors(
-  // {
-  //   // <<<<<<< HEAD
-  //   origin: ["https://ecommerce-mern-client-17.vercel.app/", "https://ecommerce-mern-admin.vercel.app/", "http://localhost:5173/"],
-  //   methods: ["POST", "PUT", "DELETE", "GET"],
-  //   // =======
-  //   // <<<<<<< HEAD
-  //   //     origin: ["http://localhost:5173/","https://ecommerce-mern-admin.vercel.app/","https://ecommerce-mern-client-17.vercel.app/"],
-  //   //     methods: ["GET", "PUT", "POST", "DELETE"],
-  //   // >>>>>>> 4fa2960033262184f5920a0ac693e91c9124749b
-  //   credentials: true,
-  // }
+  {
+    origin: ["http://localhost:5173/", "https://ecommerce-mern-admin.vercel.app/", "https://ecommerce-mern-client-17.vercel.app/"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
+  }
 ));
 
 app.use(express.json());
