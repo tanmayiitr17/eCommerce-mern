@@ -1,9 +1,5 @@
 import "./ProductList.css";
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
 import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
@@ -19,7 +15,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="productList__container"> 
+    <div className="productList__container">
       <h1 className="productList__title">{cat}</h1>
       <div className="productList__filter-container">
         <div className="productList__filter">
@@ -83,7 +79,7 @@ const ProductList = () => {
           </select>
         </div>
       </div>
-      <Products cat={cat} filters={filters} sort={sort} /> 
+      <Products cat={cat} filters={filters} sort={sort} />
     </div>
   );
 };

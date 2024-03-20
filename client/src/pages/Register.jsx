@@ -37,7 +37,7 @@ const Register = () => {
     console.log(data);
     try {
       const res = register(data, dispatch);
-      if (res.data) {
+      if (res) {
         console.log("User Created!")
       } else {
         console.log("User not Created!")
