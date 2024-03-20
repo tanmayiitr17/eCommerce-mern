@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { Badge } from "@mui/material";
@@ -6,15 +7,21 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from '../redux/userSlice';
+import { getUserCart } from "../redux/apiCalls";
 
-const Navbar = () => {
-
+const Navbar = () => { 
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
   const user = useSelector((state) => state.user.currentUser?.username);
-
+  const userId = useSelector((state) => state?.user?.currentUser?._id);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUserCart(userId, dispatch); 
+  }, [])
+
+
 
   const handleLogout = (e) => {
     dispatch(logout());
