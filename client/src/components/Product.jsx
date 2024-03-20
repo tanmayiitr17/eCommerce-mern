@@ -12,7 +12,7 @@ const Product = ({ item }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (item) => {
     const title = item.title;
     const img = item.img;
     const price = item.price;
@@ -34,7 +34,7 @@ const Product = ({ item }) => {
       <img src={item.img} className="product__image" />
       <div className="product__info">
         <div className="product__icon">
-          <ShoppingCartOutlined onClick={() => handleAddToCart()} />
+          <ShoppingCartOutlined onClick={(item) => handleAddToCart(item)} />
         </div>
         <div className="product__icon">
           <Search onClick={() => navigate(`/product/${item._id}`)} />

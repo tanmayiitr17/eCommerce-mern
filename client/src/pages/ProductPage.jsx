@@ -37,7 +37,7 @@ const productPage = () => {
     }
   }
 
-  const handleClick = async () => {
+  const handleClick = async (pdt) => {
     const title = pdt.title;
     const img = pdt.img;
     const price = pdt.price;
@@ -99,7 +99,7 @@ const productPage = () => {
               <AddIcon onClick={() => { handleQuantity("increase") }} />
             </div>
             <button className="productPage__button"
-              onClick={handleClick}
+              onClick={(pdt) => handleClick(pdt)}
             >ADD TO CART</button>
           </div>
         </div>
