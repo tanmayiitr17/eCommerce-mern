@@ -7,7 +7,7 @@ import {
     registerStart,
     registerSuccess,
     registerFailure
-} from "./userSlice"
+} from "./userSlice";
 import { addProductSuccess, removeSuccess, updateSuccess } from "./cartSlice";
 
 export const login = async (dispatch, user) => {
