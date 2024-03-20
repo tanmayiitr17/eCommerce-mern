@@ -20,7 +20,7 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-// app.use(cors());
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -28,30 +28,9 @@ app.use(cors({
     "https://ecommerce-mern-admin.vercel.app",
     "https://ecommerce-mern-client-17.vercel.app"
   ],
-  methods: ["GET", "PUT", "POST", "DELETE"]
+  methods: ["GET", "PUT", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"] // Add headers needed for your requests
 }));
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "http://localhost:5175",
-//   "https://ecommerce-mern-admin.vercel.app",
-//   "https://ecommerce-mern-client-17.vercel.app"
-// ];
-
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (allowedOrigins.includes(origin) || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   methods: ["GET", "PUT", "POST", "DELETE"]
-// };
-
-// app.use(cors(corsOptions));
-
-// // Handle preflight requests explicitly
-// app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
@@ -59,6 +38,8 @@ app.get('/', (req, res) => {
   res.send("Backend server is running!");
 });
 
+// Handle preflight requests explicitly
+app.options('*', cors());
 
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
@@ -70,3 +51,4 @@ app.use("/checkout", stripeRoute);
 app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");
 });
+
