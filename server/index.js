@@ -37,6 +37,7 @@ app.options('*', cors());
 
 app.use(express.json());
 app.get('/', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   res.send("Backend server is running!");
 });
 
