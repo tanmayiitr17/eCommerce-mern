@@ -21,16 +21,23 @@ mongoose
     console.log(err);
   });
 
-app.use(cors(
-  // {
-  //   origin: ["http://localhost:5173/", "http://localhost:5174/ ", "https://ecommerce-mern-admin.vercel.app/", "https://ecommerce-mern-client-17.vercel.app/"],
-  //   methods: ["GET", "PUT", "POST", "DELETE"],
-  // }
-));
+app.use(cors({
+  origin: [
+    // "http://localhost:5173",
+    // "http://localhost:5175",
+    // "https://ecommerce-mern-admin.vercel.app",
+    "https://ecommerce-mern-client-17.vercel.app"
+  ],
+  methods: ["GET", "PUT", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"] // Add headers needed for your requests
+}));
+
+// Handle preflight requests explicitly
+app.options('*', cors());
 
 app.use(express.json());
-
 app.get('/', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   res.send("Backend server is running!");
 });
 
@@ -45,3 +52,4 @@ app.use("/checkout", stripeRoute);
 app.listen(5000, () => {
   console.log("Backend server is running!");
 });
+
