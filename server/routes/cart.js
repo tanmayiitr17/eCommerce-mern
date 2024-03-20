@@ -7,7 +7,7 @@ const {
 const Cart = require("../models/Cart");
 
 //CREATE
-router.post("/", verifyTokenAndAuthorization, async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const newCart = new Cart(req.body);
   try {
     const savedCart = await newCart.save();
@@ -47,7 +47,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
 
 router.get("/find/:id", verifyToken, async (req, res) => {
   try {
-    const cart = await Cart.find({ userId: req.params.id })
+    const cart = await Cart.findById({ userId: req.params.id })
     res.status(200).json(cart);
   } catch (err) {
     res.status(500).json(err);
