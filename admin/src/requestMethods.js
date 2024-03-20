@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://ecommerce-mern-gamma.vercel.app/";
+const BASE_URL = "https://ecommerce-server-black.vercel.app/";
 const TOKEN = localStorage.getItem("admin-token");
 // const TOKEN = ""
 export const publicRequest = axios.create({

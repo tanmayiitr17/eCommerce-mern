@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const BASE_URL = "http://localhost:5000/";
-const BASE_URL = "https://ecommerce-mern-server-green.vercel.app/";
+const BASE_URL = "https://ecommerce-server-black.vercel.app/";
 
 const TOKEN = localStorage.getItem("user-token");
 // Create axios instance for public requests (without authentication)
