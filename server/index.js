@@ -32,14 +32,14 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"] // Add headers needed for your requests
 }));
 
-app.use(express.json());
+// Handle preflight requests explicitly
+app.options('*', cors());
 
+app.use(express.json());
 app.get('/', (req, res) => {
   res.send("Backend server is running!");
 });
 
-// Handle preflight requests explicitly
-app.options('*', cors());
 
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
