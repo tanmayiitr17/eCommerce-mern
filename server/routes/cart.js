@@ -45,10 +45,10 @@ router.delete("/:id", verifyToken, async (req, res) => {
 
 //GET USER CART
 
-router.get("/find/:id", verifyToken, async (req, res) => {
-  const userId = '65cf49c67075c96c780a414d';
+router.get("/find/:userId", verifyToken, async (req, res) => {
+  const userId = req.params.userId; // Updated variable name to userId
   try {
-    const cart = await Cart.findById(userId);
+    const cart = await Cart.findOne({ userId }); // Using userId as the query parameter
     if (!cart) {
       return res.status(404).json({ message: "Cart not found for the given user ID." });
     }
