@@ -49,12 +49,15 @@ router.get("/find/:id", verifyToken, async (req, res) => {
   const userId = req.params.id;
   try {
     const cart = await Cart.findById(userId);
-    console.log("cart", cart);
-    res.status(200).json("cart");
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found for the given user ID." });
+    }
+    res.status(200).json(cart);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 // GET ALL
 
