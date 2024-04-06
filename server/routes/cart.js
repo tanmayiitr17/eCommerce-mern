@@ -46,7 +46,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
 //GET USER CART
 
 router.get("/find/:id", verifyToken, async (req, res) => {
-  const userId = req.params.id;
+  const userId = '65cf49c67075c96c780a414d';
   try {
     const cart = await Cart.findById(userId);
     if (!cart) {
