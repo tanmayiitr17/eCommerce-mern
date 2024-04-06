@@ -39,23 +39,17 @@ export const addToCart = async (product, dispatch) => {
     }
 };
 
-export const removeFromCart = async (id, dispatch) => {
-    console.log("aaya")
-    try {
-        console.log("aur aaya")
-        const res = await userRequest.delete(`/carts/${id}`);
-        console.log("call hogya")
+export const removeFromCart = async (id, dispatch) => { 
+    try { 
+        const res = await userRequest.delete(`/carts/${id}`); 
         dispatch(removeSuccess(res.data));
     } catch (err) {
     }
 };
 
-export const updateCart = async (obj, dispatch) => {
-    console.log("aaya")
-    try {
-        console.log("aur aaya")
-        const res = await userRequest.put(`/carts/${obj._id}`, obj);
-        console.log(res)
+export const updateCart = async (obj, dispatch) => { 
+    try { 
+        const res = await userRequest.put(`/carts/${obj._id}`, obj); 
         dispatch(updateSuccess(res.data));
     } catch (err) {
     }
