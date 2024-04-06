@@ -49,7 +49,8 @@ router.get("/find/:id", verifyToken, async (req, res) => {
   const userId = req.params.id;
   try {
     const cart = await Cart.findById(userId);
-    res.status(200).json(cart);
+    console.log("cart", cart);
+    res.status(200).json("cart");
   } catch (err) {
     res.status(500).json(err);
   }
