@@ -6,25 +6,29 @@ import Search from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/apiCalls";
+import { showError, showMessage } from "../utils/notify";
 
 const Product = ({ item }) => {
   const userId = useSelector((state) => state.user.currentUser._id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleAddToCart = async (item) => {
-    const title = item.title;
-    const img = item.img;
-    const price = item.price;
-    const productId = item._id;
-
+  const title = item.title;
+  const img = item.img;
+  const price = item.price;
+  const productId = item._id;
+  const handleAddToCart = async () => {
     const product = { productId, quantity: 1, color: "blue", size: "M", title, img, price };
     const data = { userId, product };
     try {
-      await addToCart(data, dispatch);
+      const res = await addToCart(data, dispatch);
+      // if (res) {
+      //   showMessage("Added to cart!");
       window.location.reload();
+      // }
     } catch (err) {
       console.log(err)
+      // showError("Something went wrong.Try again!");
     }
   }
 

@@ -10,6 +10,7 @@ import {
 } from "./userSlice";
 import { addProductSuccess, removeSuccess, updateSuccess } from "./cartSlice";
 
+
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
     try {
@@ -39,17 +40,17 @@ export const addToCart = async (product, dispatch) => {
     }
 };
 
-export const removeFromCart = async (id, dispatch) => { 
-    try { 
-        const res = await userRequest.delete(`/carts/${id}`); 
-        dispatch(removeSuccess(res.data));
+export const removeFromCart = async (id, dispatch) => {
+    try {
+        const res = await userRequest.delete(`/carts/${id.userId}/${id.id}`);
+        dispatch(removeSuccess(id.id));
     } catch (err) {
     }
 };
 
-export const updateCart = async (obj, dispatch) => { 
-    try { 
-        const res = await userRequest.put(`/carts/${obj._id}`, obj); 
+export const updateCart = async (obj, dispatch) => {
+    try {
+        const res = await userRequest.put(`/carts/${obj._id}`, obj);
         dispatch(updateSuccess(res.data));
     } catch (err) {
     }

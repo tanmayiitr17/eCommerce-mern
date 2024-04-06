@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/apiCalls";
+import { showError, showMessage } from "../utils/notify";
 
 const productPage = () => {
 
   const userId = useSelector((state) => state.user.currentUser._id);
   const location = useLocation();
-  const pdtId = location.pathname.split("/")[2];
-  const [pdt, setpdt] = useState({});
+  const productId = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("M");
@@ -20,15 +21,15 @@ const productPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getpdt = async () => {
+    const getproduct = async () => {
       try {
-        const res = await publicRequest.get(`/products/find/${pdtId}`);
-        setpdt(res.data);
+        const res = await publicRequest.get(`/products/find/${productId}`);
+        setProduct(res.data);
       } catch (err) { }
     };
-    getpdt();
-  }, [pdtId]);
-
+    getproduct();
+  }, [productId]);
+  console.log(product)
   const handleQuantity = (type) => {
     if (type === "decrease") {
       quantity > 1 && setQuantity((quantity) => quantity - 1);
@@ -37,20 +38,24 @@ const productPage = () => {
     }
   }
 
-  const handleClick = async (pdt) => {
-    const title = pdt.title;
-    const img = pdt.img;
-    const price = pdt.price;
-    const productId = pdtId;
-
-    const product = { productId, quantity, color, size, title, img, price };
+  const title = product?.title;
+  const img = product?.img;
+  const price = product?.price;
+  const id = productId;
+  const handleClick = async () => {
+    const product = { id, quantity, color, size, title, img, price };
     const data = { userId, product };
-
+    console.log(data)
     try {
-      await addToCart(data, dispatch);
-      window.location.reload();
+      const res = await addToCart(data, dispatch);
+      // if (res) {
+      //   console.log("first")
+      //   showMessage("Added to cart!");
+        window.location.reload();
+      // }
     } catch (err) {
       console.log(err)
+      // showError("Something went wrong.Try again!");
     }
   }
 
@@ -59,20 +64,20 @@ const productPage = () => {
       <div className="productPage__wrapper">
         <div className="productPage__img-container">
           <img
-            src={pdt.img}
+            src={product?.img}
             className="productPage__image"
           />
         </div>
         <div className="productPage__info-container">
-          <h1 className="productPage__title">{pdt.title}</h1>
+          <h1 className="productPage__title">{product?.title}</h1>
           <p className="productPage__desc">
-            {pdt.desc}
+            {product?.desc}
           </p>
-          <span className="productPage__price">₹ {pdt.price}</span>
+          <span className="productPage__price">₹ {product?.price}</span>
           <div className="productPage__filter-container">
             <div className="productPage__filter">
               <span className="productPage__filter-title">Color</span>
-              {pdt?.color?.map((c) => {
+              {product?.color?.map((c) => {
                 return (<div
                   className="productPage__filter-color"
                   style={{ backgroundColor: `${c}` }}
@@ -84,7 +89,7 @@ const productPage = () => {
             <div className="productPage__filter">
               <span className="productPage__filter-title">Size</span>
               <select onChange={(e) => { setSize(e.target.value) }} className="productPage__filter-size">
-                {pdt?.size?.map((size) => {
+                {product?.size?.map((size) => {
                   return (<option value={size} key={size} className="productPage__filter-size-option">
                     {size}
                   </option>)
@@ -99,7 +104,7 @@ const productPage = () => {
               <AddIcon onClick={() => { handleQuantity("increase") }} />
             </div>
             <button className="productPage__button"
-              onClick={(pdt) => handleClick(pdt)}
+              onClick={handleClick}
             >ADD TO CART</button>
           </div>
         </div>

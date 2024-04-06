@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { logout } from '../redux/userSlice';
 import { getUserCart } from "../redux/apiCalls";
 
-const Navbar = () => { 
+const Navbar = () => {
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
   const user = useSelector((state) => state.user.currentUser?.username);
   const userId = useSelector((state) => state?.user?.currentUser?._id);
@@ -18,22 +18,21 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    getUserCart(userId, dispatch); 
+    getUserCart(userId, dispatch);
   }, [])
 
 
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     dispatch(logout());
     navigate("/");
     window.location.reload();
   }
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     navigate("/cart");
     window.location.reload();
   }
-
 
   return (
     <div className="nav__container">

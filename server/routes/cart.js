@@ -7,15 +7,31 @@ const {
 const Cart = require("../models/Cart");
 
 //CREATE
+
 router.post("/", verifyToken, async (req, res) => {
-  const newCart = new Cart(req.body);
+  const { userId, product } = req.body;
+
   try {
-    const savedCart = await newCart.save();
+    // Find the cart with the specified userId
+    let cart = await Cart.findOne({ userId });
+
+    // If cart doesn't exist, create a new one
+    if (!cart) {
+      cart = new Cart({ userId, products: [product] });
+    } else {
+      // Push the new product to the products array of the existing cart
+      cart.products.push(product);
+    }
+
+    // Save the cart
+    const savedCart = await cart.save();
+
     res.status(200).json(savedCart);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 //UPDATE
 
@@ -34,14 +50,37 @@ router.put("/:id", verifyToken, async (req, res) => {
 
 //DELETE
 
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:userId/:productId", verifyToken, async (req, res) => {
+  const { userId, productId } = req.params;
+
   try {
-    await Cart.findByIdAndDelete(req.params.id);
-    res.status(200).json("Cart has been deleted..");
+    // Find the cart with the specified userId
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found for the given user ID." });
+    }
+
+    // Find the index of the product to delete from the products array
+    const productIndex = cart.products.findIndex(product => product._id.toString() === productId);
+
+    // Check if the product exists in the cart
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in the cart." });
+    }
+
+    // Remove the product from the products array
+    cart.products.splice(productIndex, 1);
+
+    // Save the updated cart
+    const savedCart = await cart.save();
+
+    res.status(200).json(savedCart);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 //GET USER CART
 

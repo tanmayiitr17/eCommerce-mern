@@ -11,6 +11,7 @@ const KEY = import.meta.env.REACT_APP_STRIPE;
 const CartPage = () => {
 
   const cart = useSelector((state) => state.cart?.carts[0]);
+  console.log(cart)
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
 
   const [stripeToken, setStripeToken] = useState(null);
@@ -62,9 +63,9 @@ const CartPage = () => {
         </div>
         <div className="cart__bottom">
           <div className="cart__info">
-            {cart && cart?.map((obj) =>
+            {cart?.map((product) =>
             (
-              <Cart obj={obj} key={obj._id} />
+              <Cart product={product} key={product._id} />
             )
             )}
           </div>

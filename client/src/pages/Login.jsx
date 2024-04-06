@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorText from "../components/ErrorText";
+import { showError, showMessage } from "../utils/notify";
 
 const schema = yup.object({
   username: yup.string().required("Username is required"),
@@ -28,13 +29,12 @@ const Login = () => {
     console.log(data);
     try {
       const res = login(dispatch, data);
-      if (res.data) {
-        console.log("User Logged In!")
-      } else {
-        console.log("User not Logged In!")
+      if (res) {
+        showMessage("Logged in successfully!");
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
+      showError("Invaild credentials.Try again!");
     }
     navigate("/")
   };
