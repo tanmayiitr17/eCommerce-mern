@@ -1,5 +1,5 @@
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+// import AddIcon from "@mui/icons-material/Add";
+// import RemoveIcon from "@mui/icons-material/Remove";
 import "./Cart.css"
 import { removeFromCart } from "../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,11 +52,11 @@ const Cart = ({ product }) => {
                 </div>
             </div>
             <div className="cart__price-detail">
-                <div className="cart__product-amount-container">
+                {/* <div className="cart__product-amount-container">
                     <AddIcon />
                     <div className="cart__product-amount">{product?.quantity}</div>
                     <RemoveIcon />
-                </div>
+                </div> */}
                 <div className="cart__product-price">
                     ₹{product?.price * product?.quantity}
                 </div>

@@ -107,25 +107,25 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 450px) {
   .productPage__wrapper {
     padding: 10px;
     flex-direction: column;
   }
 
-  .productPage__image{
+  .productPage__image {
     height: 40vh;
   }
 
-  .productPage__info-container{
+  .productPage__info-container {
     padding: 10px;
   }
 
-  .productPage__filter-container{
+  .productPage__filter-container {
     width: 100%;
   }
 
-  .productPage__add-container{
+  .productPage__add-container {
     width: 100%;
   }
 
