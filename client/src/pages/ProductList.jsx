@@ -71,10 +71,10 @@ const ProductList = () => {
               Newest
             </option>
             <option value="asc" className="productList__option">
-              Price (asc)
+              Price (low to high)
             </option>
             <option value="desc" className="productList__option">
-              Price (desc)
+              Price (high to low)
             </option>
           </select>
         </div>

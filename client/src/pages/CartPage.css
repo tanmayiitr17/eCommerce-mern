@@ -1,7 +1,5 @@
-.cart__container {}
-
 .cart__wrapper {
-  padding: 20px;
+  padding: 7%;
 }
 
 .cart__title {
@@ -22,7 +20,6 @@
   cursor: pointer;
 }
 
-.cart__top-texts {}
 
 .cart__top-text {
   text-decoration: underline;
@@ -79,7 +76,7 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   .cart__wrapper {
     padding: 10px;
   }

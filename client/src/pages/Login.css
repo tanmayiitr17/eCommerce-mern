@@ -67,7 +67,7 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   .login__wrapper {
     width: 75%;
   }

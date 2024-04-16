@@ -80,7 +80,7 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width:450px) {
+@media only screen and (max-width:550px) {
     .slider__container {
         display: none;
     }

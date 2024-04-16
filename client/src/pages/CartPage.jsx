@@ -39,80 +39,78 @@ const CartPage = () => {
   }, [stripeToken]);
 
   return (
-    <div className="cart__container">
-      <div className="cart__wrapper">
-        <h1 className="cart__title">YOUR BAG</h1>
-        <div className="cart__top">
-          <button
-            className="cart__top-button"
-            style={{ backgroundColor: "transparent" }}
-            onClick={() => navigate("/")}
-          >
-            CONTINUE SHOPPING
-          </button>
-          <div className="cart__top-texts">
-            <span className="cart__top-text">Shopping Bag({quantity})</span>
-            <span className="cart__top-text">Your Wishlist (0)</span>
-          </div>
-          <button
-            className="cart__top-button"
-            style={{ border: "none", backgroundColor: "black", color: "white" }}
-          >
-            CHECKOUT NOW
-          </button>
+    <div className="cart__wrapper">
+      <h1 className="cart__title">YOUR BAG</h1>
+      <div className="cart__top">
+        <button
+          className="cart__top-button"
+          style={{ backgroundColor: "transparent" }}
+          onClick={() => navigate("/")}
+        >
+          CONTINUE SHOPPING
+        </button>
+        <div className="cart__top-texts">
+          <span className="cart__top-text">Shopping Bag({quantity})</span>
+          <span className="cart__top-text">Your Wishlist (0)</span>
         </div>
-        <div className="cart__bottom">
-          <div className="cart__info">
-            {cart?.map((product) =>
-            (
-              <Cart product={product} key={product._id} />
-            )
-            )}
+        <button
+          className="cart__top-button"
+          style={{ border: "none", backgroundColor: "black", color: "white" }}
+        >
+          CHECKOUT NOW
+        </button>
+      </div>
+      <div className="cart__bottom">
+        <div className="cart__info">
+          {cart?.map((product) =>
+          (
+            <Cart product={product} key={product._id} />
+          )
+          )}
+        </div>
+        <hr className="cart__hr" />
+        <div className="cart__summary">
+          <h1 className="cart__summary-title">ORDER SUMMARY</h1>
+          <div className="cart__summary-item">
+            <span className="cart__summary-item-text">Subtotal</span>
+            <span className="cart__summary-item-price">₹ {cart?.total} </span>
           </div>
-          <hr className="cart__hr" />
-          <div className="cart__summary">
-            <h1 className="cart__summary-title">ORDER SUMMARY</h1>
-            <div className="cart__summary-item">
-              <span className="cart__summary-item-text">Subtotal</span>
-              <span className="cart__summary-item-price">₹ {cart?.total} </span>
-            </div>
-            <div className="cart__summary-item">
-              <span className="cart__summary-item-text">
-                Estimated Shipping
-              </span>
-              <span className="cart__summary-item-price">₹ 5.90</span>
-            </div>
-            <div className="cart__summary-item">
-              <span className="cart__summary-item-text">Shipping Discount</span>
-              <span className="cart__summary-item-price">₹ -5.90</span>
-            </div>
-            <div className="cart__summary-item">
-              <span
-                className="cart__summary-item-text"
-                style={{ fontWeight: "500", fontSize: "24px" }}
-              >
-                Total
-              </span>
-              <span
-                className="cart__summary-item-price"
-                style={{ fontWeight: "500", fontSize: "24px" }}
-              >
-                ₹{cart?.total}
-              </span>
-            </div>
-            <StripeCheckout
-              name="eKHARID Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
-              billingAddress
-              shippingAddress
-              description={`Your total is ₹`}
-              amount={cart?.total}
-              token={onToken}
-              stripekey={KEY}
+          <div className="cart__summary-item">
+            <span className="cart__summary-item-text">
+              Estimated Shipping
+            </span>
+            <span className="cart__summary-item-price">₹ 5.90</span>
+          </div>
+          <div className="cart__summary-item">
+            <span className="cart__summary-item-text">Shipping Discount</span>
+            <span className="cart__summary-item-price">₹ -5.90</span>
+          </div>
+          <div className="cart__summary-item">
+            <span
+              className="cart__summary-item-text"
+              style={{ fontWeight: "500", fontSize: "24px" }}
             >
-              <button className="cart__button">CHECKOUT NOW</button>
-            </StripeCheckout>
+              Total
+            </span>
+            <span
+              className="cart__summary-item-price"
+              style={{ fontWeight: "500", fontSize: "24px" }}
+            >
+              ₹{cart?.total}
+            </span>
           </div>
+          <StripeCheckout
+            name="eKHARID Shop"
+            image="https://avatars.githubusercontent.com/u/1486366?v=4"
+            billingAddress
+            shippingAddress
+            description={`Your total is ₹`}
+            amount={cart?.total}
+            token={onToken}
+            stripekey={KEY}
+          >
+            <button className="cart__button">CHECKOUT NOW</button>
+          </StripeCheckout>
         </div>
       </div>
     </div>

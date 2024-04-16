@@ -57,6 +57,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 1px solid grey;
   margin: 0px 5px;
   cursor: pointer;
 }
@@ -95,8 +96,9 @@
 
 .productPage__button {
   padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
+  border-style: none;
+  background-color: teal;
+  color: white;
   cursor: pointer;
   font-weight: 500;
 }
@@ -107,14 +109,14 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   .productPage__wrapper {
     padding: 10px;
     flex-direction: column;
   }
 
   .productPage__image {
-    height: 40vh;
+    height: 50vh;
   }
 
   .productPage__info-container {
@@ -127,6 +129,10 @@
 
   .productPage__add-container {
     width: 100%;
+  }
+
+  .productPage__filter {
+    padding-right: 12px;
   }
 
 }

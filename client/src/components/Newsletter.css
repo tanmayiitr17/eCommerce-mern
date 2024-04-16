@@ -41,9 +41,14 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
+  .newsletter__title {
+    font-size: 60px;
+  }
+
   .newsletter__desc {
     text-align: center;
+    font-size: 18px;
   }
 
   .newsletter__input-container {

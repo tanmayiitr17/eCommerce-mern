@@ -9,9 +9,7 @@
   padding: 20px;
 }
 
-.footer__logo {
-    
-}
+.footer__logo {}
 
 .footer__desc {
   margin: 20px 0px;
@@ -74,16 +72,24 @@
 
 /* ----------------------------------------------------------------------------------- */
 
-@media only screen and (max-width:450px){
-    .footer__center{
-      display: none;
-    }
+@media only screen and (max-width:550px) {
+  .footer__center {
+    display: none;
+  }
 
-    .footer__container{
-      flex-direction: column;
-    }
+  .footer__container {
+    flex-direction: column;
+  }
 
-    .footer__right{
-      background-color: #fff8f8;
-    }
+  .footer__right {
+    background-color: #fff8f8;
+  }
+
+  .footer__desc {
+    font-size: 15px;
+  }
+
+  .footer__contactItem {
+    font-size: 15px;
+  }
 }
