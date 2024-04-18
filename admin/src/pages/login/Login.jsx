@@ -8,9 +8,11 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const handleClick = (e) => {
-    e.preventDefault();   
+    e.preventDefault();
     login(dispatch, { username, password });
+    // navigate("/home")
   }
 
 

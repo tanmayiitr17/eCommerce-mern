@@ -18,42 +18,34 @@ function App() {
   console.log(admin)
   return (
     <Router>
-      <Switch>
-        {admin
-          ?
-          <>
-            <Topbar />
-            <div className="container">
-              <Sidebar />
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/users">
-                <UserList />
-              </Route>
-              <Route path="/user/:userId">
-                <User />
-              </Route>
-              <Route path="/newUser">
-                <NewUser />
-              </Route>
-              <Route path="/products">
-                <ProductList />
-              </Route>
-              <Route path="/product/:productId">
-                <Product />
-              </Route>
-              <Route path="/newproduct">
-                <NewProduct />
-              </Route>
-            </div>
-          </>
-          :
-          <>
-            <Route path='/login'><Login /></Route>
-          </>
-        }
-      </Switch>
+      <Route path='/login'><Login /></Route>
+      <Topbar />
+      {admin && <Switch>
+        <div className="container">
+          <Sidebar />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/users">
+            <UserList />
+          </Route>
+          <Route path="/user/:userId">
+            <User />
+          </Route>
+          <Route path="/newUser">
+            <NewUser />
+          </Route>
+          <Route path="/products">
+            <ProductList />
+          </Route>
+          <Route path="/product/:productId">
+            <Product />
+          </Route>
+          <Route path="/newproduct">
+            <NewProduct />
+          </Route>
+        </div>
+      </Switch>}
     </Router>
   );
 }
