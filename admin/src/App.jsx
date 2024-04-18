@@ -18,7 +18,7 @@ function App() {
   console.log(admin)
   return (
     <Router>
-      <Route path='/login'><Login /></Route>
+      {!admin && <Route path='/'><Login /></Route>}
       <Topbar />
       {admin && <Switch>
         <div className="container">
