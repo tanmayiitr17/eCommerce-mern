@@ -9,7 +9,7 @@ import { deleteCustomer, getCustomers } from "../../redux/apiCalls";
 export default function UserList() {
     const dispatch = useDispatch();
     const customers = useSelector((state) => state.customer?.customers);
-
+    console.log(customers)
     useEffect(() => {
         getCustomers(dispatch)
     }, [dispatch])
