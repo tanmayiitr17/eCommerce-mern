@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "./Cart.css"
 import { useSelector } from "react-redux";
 import { removeFromCart } from '../api/cart';
+import { showError, showMessage } from '../utils/notify';
 
 const Cart = ({ product }) => {
     const userId = useSelector((state) => state?.user?.currentUser?._id);
@@ -16,9 +17,15 @@ const Cart = ({ product }) => {
         try {
             const res = await removeFromCart(id);
             if (res) {
-                window.location.reload();
+                showMessage("Removed from cart!")
             }
         } catch (err) {
+            console.log(err)
+            showError("Something went wrong.Try Again!");
+        } finally {
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         }
     }
 
