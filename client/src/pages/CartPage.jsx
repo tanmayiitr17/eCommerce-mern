@@ -19,6 +19,11 @@ const CartPage = () => {
     setStripeToken(token);
   }
 
+  let total = 30;
+  cart?.map((product) => {
+    total += product?.price * product?.quantity;
+  })
+
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -57,7 +62,7 @@ const CartPage = () => {
           billingAddress
           shippingAddress
           description={`Your total is ₹`}
-          amount={cart?.total}
+          amount={total}
           token={onToken}
           stripekey={KEY}
         >
@@ -83,17 +88,17 @@ const CartPage = () => {
           <h1 className="cart__summary-title">ORDER SUMMARY</h1>
           <div className="cart__summary-item">
             <span className="cart__summary-item-text">Subtotal</span>
-            <span className="cart__summary-item-price">₹ {cart?.total} </span>
+            <span className="cart__summary-item-price">₹ {total} </span>
           </div>
           <div className="cart__summary-item">
             <span className="cart__summary-item-text">
               Estimated Shipping
             </span>
-            <span className="cart__summary-item-price">₹ 5.90</span>
+            <span className="cart__summary-item-price">₹ 50</span>
           </div>
           <div className="cart__summary-item">
             <span className="cart__summary-item-text">Shipping Discount</span>
-            <span className="cart__summary-item-price">₹ -5.90</span>
+            <span className="cart__summary-item-price">₹ -20</span>
           </div>
           <div className="cart__summary-item">
             <span
@@ -106,7 +111,7 @@ const CartPage = () => {
               className="cart__summary-item-price"
               style={{ fontWeight: "500", fontSize: "24px" }}
             >
-              ₹{cart?.total}
+              ₹{total}
             </span>
           </div>
           <StripeCheckout
@@ -115,7 +120,7 @@ const CartPage = () => {
             billingAddress
             shippingAddress
             description={`Your total is ₹`}
-            amount={cart?.total}
+            amount={total}
             token={onToken}
             stripekey={KEY}
           >

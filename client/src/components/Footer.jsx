@@ -13,29 +13,30 @@ const Footer = () => {
       <div className="footer__left">
         <h1 className="footer__logo">eKHARID.</h1>
         <p className="footer__desc">
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          eKharid, a dummy full-stack eCommerce site by <b>Tanmay Pandey</b>, showcases modern web development with MongoDB, Express.js, React.js, Node.js, and Redux Toolkit. Redux Toolkit streamlines state management in React applications, enhancing eKharid's efficiency and scalability while providing a seamless shopping experience for users.
         </p>
         <div className="footer__social-container">
-          <div
+          <a
             className="footer__social-icon"
             style={{ backgroundColor: "#385999" }}
+            href="https://www.linkedin.com/in/tanmay-pandey-03281b232/"
           >
             <Facebook />
-          </div>
-          <div
+          </a>
+          <a
             className="footer__social-icon"
             style={{ backgroundColor: "#E4405F" }}
+            href="https://www.linkedin.com/in/tanmay-pandey-03281b232/"
           >
             <InstagramIcon />
-          </div>
-          <div
+          </a>
+          <a
             className="footer__social-icon"
             style={{ backgroundColor: "#55ACEE" }}
+            href="https://www.linkedin.com/in/tanmay-pandey-03281b232/"
           >
             <TwitterIcon />
-          </div>
+          </a>
         </div>
       </div>
       <div className="footer__center">

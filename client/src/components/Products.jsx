@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Products.css";
 import Product from "./Product";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -15,8 +17,15 @@ const Products = ({ cat, filters, sort }) => {
             ? `https://ecommerce-server-black.vercel.app/products?category=${cat}`
             : "https://ecommerce-server-black.vercel.app/products"
         );
-        setProducts(res.data);
-      } catch (err) { }
+        if (res) {
+          setLoading(false);
+          setProducts(res.data);
+        }
+      } catch (err) {
+
+      } finally {
+        setLoading(false);
+      }
     };
     getProducts();
   }, [cat]);
@@ -49,6 +58,7 @@ const Products = ({ cat, filters, sort }) => {
   }, [sort]);
   return (
     <div className="products__container">
+      {loading && <Loading />}
       {cat
         ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
         : products

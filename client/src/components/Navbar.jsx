@@ -9,9 +9,11 @@ import { useDispatch } from "react-redux";
 import { logout } from '../redux/userSlice';
 import { addProductSuccess, logoutCart } from "../redux/cartSlice";
 import { getUserCart } from "../api/cart";
+import Loading from "./Loading";
 
 const Navbar = () => {
-  console.log("nav")
+  const [loading, setLoading] = useState(true);
+
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
   const user = useSelector((state) => state.user?.currentUser?.username);
   const userId = useSelector((state) => state?.user?.currentUser?._id);
@@ -24,9 +26,12 @@ const Navbar = () => {
         const res = await getUserCart(userId);
         if (res) {
           dispatch(addProductSuccess(res));
+          setLoading(false);
         }
       } catch (err) {
         console.log(err)
+      } finally {
+        setLoading(false);
       }
     }
     cart();
@@ -48,6 +53,7 @@ const Navbar = () => {
 
   return (
     <div className="nav__container">
+      {loading && <Loading />}
       <div className="nav__wrapper">
         <div className="nav__left">
           <span className="nav__language">EN</span>
