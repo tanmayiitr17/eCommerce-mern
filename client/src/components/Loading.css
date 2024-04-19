@@ -20,8 +20,8 @@
     color: #454545;
     font-weight: 700;
     font-size: 20px;
-    height: 50vh;
-    width: 50vw;
+    height: 40vh;
+    width: 500px;
     display: flex;
     background-color: #fff;
     border-radius: 6px;
@@ -30,8 +30,8 @@
 }
 
 .loading-progress {
-    color: #116EB6;
-    height: 30px;
-    width: 30px;
-    margin-bottom: 12px;
+    color: teal !important;
+    height: 30px !important;
+    width: 30px !important;
+    margin-bottom: 12px !important;
 }
