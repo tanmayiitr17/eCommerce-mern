@@ -2,9 +2,8 @@
 // import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./Cart.css"
-import { removeFromCart } from "../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { showError, showMessage } from "../utils/notify";
+import { useSelector } from "react-redux";
+import { removeFromCart } from '../api/cart';
 
 const Cart = ({ product }) => {
     const userId = useSelector((state) => state?.user?.currentUser?._id);
@@ -12,19 +11,14 @@ const Cart = ({ product }) => {
         userId: userId,
         id: product?._id,
     }
-    const dispatch = useDispatch();
 
     const handleRemove = async () => {
         try {
-            const res = await removeFromCart(id, dispatch);
-            // if (res) {
-            //     showMessage("Removed from cart!");
-            window.location.reload();
-            // }
-
+            const res = await removeFromCart(id);
+            if (res) {
+                window.location.reload();
+            }
         } catch (err) {
-            // console.log(err);
-            // showError("Something went wrong.Try again!")
         }
     }
 

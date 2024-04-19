@@ -7,31 +7,43 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from '../redux/userSlice';
-import { getUserCart } from "../redux/apiCalls";
+import { addProductSuccess, logoutCart } from "../redux/cartSlice";
+import { getUserCart } from "../api/cart";
 
 const Navbar = () => {
+  console.log("nav")
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
-  const user = useSelector((state) => state.user.currentUser?.username);
+  const user = useSelector((state) => state.user?.currentUser?.username);
   const userId = useSelector((state) => state?.user?.currentUser?._id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    getUserCart(userId, dispatch);
+    const cart = async () => {
+      try {
+        const res = await getUserCart(userId);
+        if (res) {
+          dispatch(addProductSuccess(res));
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    cart();
   }, [])
 
-
+  const handleBackToHome = () => {
+    navigate("/")
+  }
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(logoutCart());
     navigate("/");
-    window.location.reload();
   }
 
   const handleClick = () => {
     navigate("/cart");
-    window.location.reload();
   }
 
   return (
@@ -45,7 +57,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="nav__center">
-          <h1 className="nav__logo">eKHARID.</h1>
+          <h1 className="nav__logo" onClick={handleBackToHome}>eKHARID.</h1>
         </div>
         <div className="nav__right ">
           <div className="nav__menu-item">{user}</div>

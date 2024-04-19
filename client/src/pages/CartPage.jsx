@@ -11,9 +11,7 @@ const KEY = import.meta.env.REACT_APP_STRIPE;
 const CartPage = () => {
 
   const cart = useSelector((state) => state.cart?.carts[0]);
-  console.log(cart)
   const quantity = useSelector((state) => state.cart?.carts[0]?.length);
-
   const [stripeToken, setStripeToken] = useState(null);
 
   const navigate = useNavigate();
@@ -51,14 +49,26 @@ const CartPage = () => {
         </button>
         <div className="cart__top-texts">
           <span className="cart__top-text">Shopping Bag({quantity})</span>
-          <span className="cart__top-text">Your Wishlist (0)</span>
+          {/* <span className="cart__top-text">Your Wishlist (0)</span> */}
         </div>
-        <button
-          className="cart__top-button"
-          style={{ border: "none", backgroundColor: "black", color: "white" }}
+        <StripeCheckout
+          name="eKHARID Shop"
+          image="https://avatars.githubusercontent.com/u/1486366?v=4"
+          billingAddress
+          shippingAddress
+          description={`Your total is ₹`}
+          amount={cart?.total}
+          token={onToken}
+          stripekey={KEY}
         >
-          CHECKOUT NOW
-        </button>
+          <button
+            className="cart__top-button"
+            style={{ border: "none", backgroundColor: "black", color: "white" }}
+          >
+            CHECKOUT NOW
+          </button>
+        </StripeCheckout>
+
       </div>
       <div className="cart__bottom">
         <div className="cart__info">

@@ -4,21 +4,19 @@ import { useLocation } from "react-router-dom";
 import "./ProductPage.css";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../redux/apiCalls";
+import { useSelector } from "react-redux";
+import { addToCart } from "../api/cart";
 import { showError, showMessage } from "../utils/notify";
 
 const productPage = () => {
 
-  const userId = useSelector((state) => state.user.currentUser._id);
+  const userId = useSelector((state) => state?.user?.currentUser?._id);
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("M");
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const getproduct = async () => {
@@ -29,7 +27,9 @@ const productPage = () => {
     };
     getproduct();
   }, [productId]);
-  console.log(product)
+
+
+
   const handleQuantity = (type) => {
     if (type === "decrease") {
       quantity > 1 && setQuantity((quantity) => quantity - 1);
@@ -47,15 +47,17 @@ const productPage = () => {
     const data = { userId, product };
     console.log(data)
     try {
-      const res = await addToCart(data, dispatch);
-      // if (res) {
-      //   console.log("first")
-      //   showMessage("Added to cart!");
-        window.location.reload();
-      // }
+      const res = await addToCart(data);
+      if (res) {
+        showMessage("Added to cart!")
+      }
     } catch (err) {
       console.log(err)
-      // showError("Something went wrong.Try again!");
+      showError("Something went wrong.Try Again!");
+    } finally {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   }
 

@@ -1,11 +1,13 @@
 import './Register.css';
 import { useDispatch } from 'react-redux';
-import { register } from "../redux/apiCalls";
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorText from "../components/ErrorText";
+import { register } from '../api/authentication';
+import { registerSuccess } from '../redux/userSlice';
+import { showError, showMessage } from '../utils/notify';
 
 const schema = yup.object({
   username: yup.string().required("Unique username is required"),
@@ -14,15 +16,13 @@ const schema = yup.object({
   email: yup.string().email("Invalid email format").required("Email is required"),
   phone: yup
     .number()
-    .typeError("Phone must be a number")
-    .min(1000000000, "Phone must be at least 10 digits")
-    .required("Phone number is required"),
+    .required("Mobile Number is required!")
+    .max(10, "Mobile Number must be of 10 digit")
+    .min(10, "Mobile Number must be of 10 digit"),
   address: yup.string().required("Address is required"),
 });
 
-
 const Register = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -31,21 +31,17 @@ const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // console.log(errors)
   const onSubmit = async (data) => {
-    console.log("data");
-    console.log(data);
     try {
-      const res = register(data, dispatch);
+      const res = await register(data);
       if (res) {
-        console.log("User Created!")
-      } else {
-        console.log("User not Created!")
+        dispatch(registerSuccess(res));
+        showMessage("Registered Successfully!");
+        navigate("/")
       }
     } catch (err) {
-      console.log(err);
+      showError("Something went wrong.Try Again!");
     }
-    navigate("/")
   };
 
   return (
