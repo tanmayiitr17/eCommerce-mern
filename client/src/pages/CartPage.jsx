@@ -61,7 +61,7 @@ const CartPage = () => {
           image="https://avatars.githubusercontent.com/u/1486366?v=4"
           billingAddress
           shippingAddress
-          description={`Your total is ₹`}
+          description={`Your total is ₹${total}`}
           amount={total}
           token={onToken}
           stripekey={KEY}
@@ -119,7 +119,7 @@ const CartPage = () => {
             image="https://avatars.githubusercontent.com/u/1486366?v=4"
             billingAddress
             shippingAddress
-            description={`Your total is ₹`}
+            description={`Your total is ₹${total}`}
             amount={total}
             token={onToken}
             stripekey={KEY}
