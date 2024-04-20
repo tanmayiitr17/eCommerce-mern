@@ -28,20 +28,20 @@ export const categories = [
     img: "https://st.depositphotos.com/1007995/1274/i/450/depositphotos_12746726-stock-photo-fashion-man-wearing-sunglasses-thinking.jpg",
     // img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     title: "MEN STYLE!",
-    cat: "men",
+    cat: "MEN STYLE",
   },
   {
     id: 2,
     // img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     img: "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/21334304/2023/10/4/10d96212-4d28-447f-8ab7-cd15b91e503f1696406650695-anayna-Red-Floral-Ethnic-A-Line-Cotton-Midi-Ethnic-Dress-764-6.jpg",
     title: "WOMEN TREND!",
-    cat: "women",
+    cat: "WOMEN TREND",
   },
   {
     id: 3,
     // img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     img: "https://img.freepik.com/free-photo/full-shot-kids-posing-together_23-2149853383.jpg",
     title: "KIDS FASHION!",
-    cat: "jeans",
+    cat: "KIDS FASHION",
   },
 ];
