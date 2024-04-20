@@ -24,7 +24,7 @@
 }
 
 .productPage__title {
-  font-weight: 200;
+  font-weight: 600;
 }
 
 .productPage__desc {
@@ -32,7 +32,7 @@
 }
 
 .productPage__price {
-  font-weight: 100;
+  font-weight: 500;
   font-size: 40px;
 }
 
