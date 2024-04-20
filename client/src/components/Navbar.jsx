@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { logout } from '../redux/userSlice';
 import { addProductSuccess, logoutCart } from "../redux/cartSlice";
 import { getUserCart } from "../api/cart";
-import Loading from "./Loading";
+import Loading from "../utils/Loading";
 
 const Navbar = () => {
   const [loading, setLoading] = useState(true);

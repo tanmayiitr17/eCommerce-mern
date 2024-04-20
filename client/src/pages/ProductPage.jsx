@@ -7,9 +7,10 @@ import { publicRequest } from "../requestMethods";
 import { useSelector } from "react-redux";
 import { addToCart } from "../api/cart";
 import { showError, showMessage } from "../utils/notify";
+import Loading from "../utils/Loading";
 
 const productPage = () => {
-
+  const [loading, setLoading] = useState(true);
   const userId = useSelector((state) => state?.user?.currentUser?._id);
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
@@ -22,8 +23,16 @@ const productPage = () => {
     const getproduct = async () => {
       try {
         const res = await publicRequest.get(`/products/find/${productId}`);
-        setProduct(res.data);
-      } catch (err) { }
+        if (res) {
+          setProduct(res.data);
+          setLoading(false);
+        }
+
+      } catch (err) {
+
+      } finally {
+        setLoading(false);
+      }
     };
     getproduct();
   }, [productId]);
@@ -63,6 +72,7 @@ const productPage = () => {
 
   return (
     <div className="productPage__container">
+      {loading && <Loading />}
       <div className="productPage__wrapper">
         <div className="productPage__img-container">
           <img
