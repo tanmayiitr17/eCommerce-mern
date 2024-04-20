@@ -14,7 +14,8 @@ import { useSelector } from "react-redux";
 import Announcement from "./components/Announcement";
 import Navbar from "./components/Navbar";
 import Newsletter from "./components/Newsletter";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer"; 
+import ScrollToTop from "./utils/scrollToTop";
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {
           !user && (<>

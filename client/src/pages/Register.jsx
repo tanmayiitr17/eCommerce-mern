@@ -1,13 +1,12 @@
 import './Register.css';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorText from "../components/ErrorText";
 import { register } from '../api/authentication';
-import { registerSuccess } from '../redux/userSlice';
 import { showError, showMessage } from '../utils/notify';
+
 
 const schema = yup.object({
   username: yup.string().required("Unique username is required"),
@@ -15,15 +14,13 @@ const schema = yup.object({
   password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
   email: yup.string().email("Invalid email format").required("Email is required"),
   phone: yup
-    .number()
+    .string()
     .required("Mobile Number is required!")
-    .max(10, "Mobile Number must be of 10 digit")
-    .min(10, "Mobile Number must be of 10 digit"),
+    .matches(/^[0-9]{10}$/, "Mobile Number must be of 10 digits"),
   address: yup.string().required("Address is required"),
 });
 
 const Register = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     control,
@@ -35,7 +32,6 @@ const Register = () => {
     try {
       const res = await register(data);
       if (res) {
-        dispatch(registerSuccess(res));
         showMessage("Registered Successfully!");
         navigate("/")
       }
