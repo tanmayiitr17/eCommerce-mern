@@ -16,8 +16,8 @@ const productPage = () => {
   const productId = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("blue");
-  const [size, setSize] = useState("M");
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
 
   useEffect(() => {
     const getproduct = async () => {
@@ -25,6 +25,8 @@ const productPage = () => {
         const res = await publicRequest.get(`/products/find/${productId}`);
         if (res) {
           setProduct(res.data);
+          setColor(res.data?.color[0]);
+          setSize(res.data?.size[0]);
           setLoading(false);
         }
 
