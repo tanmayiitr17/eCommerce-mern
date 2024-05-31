@@ -14,9 +14,10 @@ const Product = ({ item }) => {
         <div className="product__icon">
           <Search onClick={() => navigate(`/product/${item._id}`)} />
         </div>
-        <div className="product__icon">
+        {/* <div className="product__icon">
           <FavoriteBorderOutlined />
-        </div>
+        </div> */}
+        <div className="product__icon">₹ {item?.price}</div>
       </div>
     </div>
   );
