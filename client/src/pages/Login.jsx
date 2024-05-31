@@ -97,8 +97,7 @@ const Login = () => {
           >
             LOGIN
           </button>
-          {error && <span className="login__error">Something went wrong...</span>}
-          {/* <a href="" className="login__link">DO NOT YOU REMEMBER THE PASSWORD?</a> */}
+          {error && <span className="login__error">Something went wrong...</span>} 
           <a onClick={handleSwitchToRegister} className="login__link">CREATE A NEW ACCOUNT</a>
         </form>
       </div >

@@ -1,7 +1,6 @@
-.productList__container {}
-
 .productList__title {
   margin: 20px;
+  text-align: center;
 }
 
 .productList__filter-container {
@@ -23,8 +22,6 @@
   padding: 10px;
   margin-right: 20px;
 }
-
-.productList__option {}
 
 /* ----------------------------------------------------------------------------------- */
 

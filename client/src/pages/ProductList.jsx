@@ -5,10 +5,20 @@ import { useState } from "react";
 
 const ProductList = () => {
   const location = useLocation();
-  const cat = location.pathname.split("/")[2];
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
-
+  let cat = "";
+  let heading = "";
+  if (location.pathname.split("/")[2] === "MEN-STYLE") {
+    cat = "man";
+    heading = "MEN-STYLE";
+  } else if (location.pathname.split("/")[2] === "WOMEN-TREND") {
+    cat = "woman";
+    heading = "WOMEN-STYLE";
+  } else {
+    cat = "kid";
+    heading = "KIDS-FASHION";
+  }
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({ ...filters, [e.target.name]: value });
@@ -16,7 +26,7 @@ const ProductList = () => {
 
   return (
     <div className="productList__container">
-      <h1 className="productList__title">{cat}</h1>
+      <h1 className="productList__title">{heading}</h1>
       <div className="productList__filter-container">
         <div className="productList__filter">
           <span className="productList__filter-text">Filter Products:</span>
